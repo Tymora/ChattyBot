@@ -1,0 +1,93 @@
+<h2>Type conversion</h2>
+<html><body><h5 id="conversion-between-numeric-types" style="text-align: center;">Conversion between numeric types</h5>
+<p>There are three most common numeric types: <code class="language-kotlin">Int</code>, <code class="language-kotlin">Long</code>, and <code class="language-kotlin">Double</code>. Sometimes, you may need to assign a value of one numeric type to a variable of another numeric type. In this case, you need to carry out <strong>type conversion </strong>by invoking a special function, for example, <code class="language-kotlin">toInt()</code>, <code class="language-kotlin">toLong()</code>, <code class="language-kotlin">toDouble()</code>, and so on.</p>
+<p>Imagine, you have a variable called <code class="language-kotlin">num</code>, which is of the <code class="language-kotlin">Int</code> type. You want to pass this variable to a function called <code class="language-kotlin">sqrt</code> (you can read more about this function and how to use it <a href="https://hyperskill.org/learn/step/12532" rel="noopener noreferrer nofollow" target="_blank">here</a>) that finds the square root of a number. This function requires a <code class="language-kotlin">Double</code> value rather than <code class="language-kotlin">Int</code>, so you need to convert it using <code class="language-kotlin">toDouble()</code> to prevent a <strong>type mismatch</strong> error.</p>
+<pre><code class="language-kotlin">val num: Int = 100
+
+val res: Double = sqrt(num.toDouble())
+println(res) // 10.0
+
+println(num) // 100, it is not modified</code></pre>
+<p>In the example above, the variable types are specified to simplify the explanation.</p>
+<p><span style="background-color: transparent; color: #000000; font-size: 11pt; font-variant: normal;"></span></p><div class="alert alert-warning"><code class="language-kotlin"><span style="background-color: transparent; color: #000000;">to</span>Double()</code> does not modify the type of the variable. This function produces a new value of the <code class="language-kotlin">Double</code> type.<span style="background-color: transparent; color: #000000; font-size: 11pt; font-variant: normal;"></span></div><p></p>
+<p>It's possible to perform these operations even when the target type is larger than the source type. So it means that we can convert <code class="language-kotlin">Int</code> to <code class="language-kotlin">Long</code>. It distinguishes Kotlin from other programming languages like Java and C#. They allow assigning numbers of a smaller type to variables of a larger type without extra actions.</p>
+<pre><code class="language-kotlin">val num: Int = 100
+val bigNum: Long = num.toLong() // 100</code></pre>
+<p><code class="language-kotlin">Char</code> is not a numeric type, but you can convert a number to a character and vice versa according to the character code. You can take a look at the code in the Unicode table. This code is basically an integer number.</p>
+<pre><code class="language-kotlin">val n1: Int = 125
+val ch: Char = n1.toChar() // '}'
+val n2: Int = ch.code      // 125</code></pre>
+<p>If you have a value of a floating type, a <code class="language-kotlin">Double</code> value, for example, you may convert it to a value of an integer type, such as <code class="language-kotlin">Int</code> or <code class="language-kotlin">Long</code>.</p>
+<pre><code class="language-kotlin">val d: Double = 12.5
+val n: Long = d.toLong() // 12</code></pre>
+<p>As you can see, the fractional part is simply dropped.</p>
+<p>Also, you can convert a number from a larger type to a smaller type ( <code class="language-kotlin">Long</code> or <code class="language-kotlin">Double</code> to <code class="language-kotlin">Int</code>) using the functions mentioned above.</p>
+<pre><code class="language-kotlin">val d: Double = 10.2
+val n: Long = 15
+
+val res1: Int = d.toInt() // 10
+val res2: Int = n.toInt() // 15</code></pre>
+<p>However, this conversion may truncate the value, as <code class="language-kotlin">Long</code> and <code class="language-kotlin">Double</code> can store numbers larger than the truncated <code class="language-kotlin">Int</code> number.</p>
+<pre><code class="language-kotlin">val bigNum: Long = 100_000_000_000_000
+
+val n: Int = bigNum.toInt() // 276447232; oops</code></pre>
+<p>As a result, we receive a truncated value. This problem is known as <strong>type overflow</strong>. The same problem may occur if you try to convert <code class="language-kotlin">Int</code> to <code class="language-kotlin">Short</code> or <code class="language-kotlin">Byte</code>. So, if you want to convert a larger type value into a smaller one, make sure that the truncation is not going to mess up your program.</p>
+<h5 id="conversion-to-short-and-byte-types" style="text-align: center;">Conversion to Short and Byte types</h5>
+<p>As you know, the <code class="language-kotlin">Short</code> and <code class="language-kotlin">Byte</code> types are really small. These types are rarely used, and if you need to store an integer number, you should use <code class="language-kotlin">Int</code>. Here is an example of why you need to do it.</p>
+<p>Normally, you can use functions <code class="language-kotlin">toShort()</code> and <code class="language-kotlin">toByte()</code> to convert something to these types. Since Kotlin 1.4, you should avoid these functions when you try to convert <code class="language-kotlin">Double</code> or <code class="language-kotlin">Float</code> type. This feature will be removed in future releases. The main problem here is that the conversion can lead to unexpected results due to the variable's smaller size. Now, you need to convert <code class="language-kotlin">Double</code> or <code class="language-kotlin">Float</code> to <code class="language-kotlin">Int</code> and then convert the result to <code class="language-kotlin">Short</code> or <code class="language-kotlin">Byte</code>:</p>
+<pre><code class="language-kotlin">val floatNumber = 10f
+val doubleNumber = 1.0
+
+val shortNumber = floatNumber.toShort() // avoid this
+val byteNumber = doubleNumber.toByte()  // avoid this
+
+val shortNumber = floatNumber.toInt().toShort() // correct way
+val byteNumber = doubleNumber.toInt().toByte()  // correct way</code></pre>
+<h5 id="string-conversion" style="text-align: center;">String conversion</h5>
+<p>Sometimes you need to get a string representation of a value of another type. Kotlin provides the <code class="language-kotlin">toString()</code> function for that. It can convert a value of any type to a string.</p>
+<pre><code class="language-kotlin">val n = 8     // Int
+val d = 10.09 // Double
+val c = '@'   // Char
+val b = true  // Boolean
+
+val s1 = n.toString() // "8"
+val s2 = d.toString() // "10.09"
+val s3 = c.toString() // "@"
+val s4 = b.toString() // "true"</code></pre>
+<p>A string can be converted to a number or even to a boolean value but not to a single character.</p>
+<pre><code class="language-kotlin">val n = "8".toInt() // Int
+val d = "10.09".toDouble() // Double
+val b = "true".toBoolean() // Boolean</code></pre>
+<p>If a string representation has an invalid format, it will produce an error. After that, the program will stop unless you take special actions. We will discuss them later.</p>
+<p>However, if you convert a string to a boolean value, no errors will occur. If the string is <code class="language-kotlin">"true"</code> (case insensitive), it will produce a <code class="language-kotlin">true</code> boolean value, otherwise a <code class="language-kotlin">false</code> one.</p>
+<pre><code class="language-kotlin">val b1 = "false".toBoolean() // false
+val b2 = "tru".toBoolean()   // false
+val b3 = "true".toBoolean()  // true
+val b4 = "TRUE".toBoolean()  // true</code></pre>
+<h5 id="demonstration" style="text-align: center;">Demonstration</h5>
+<p>The program below demonstrates the functions discussed above. It reads a string representation of a number, converts it to several other types, and then prints the results of all conversions.</p>
+<pre><code class="language-kotlin">fun main() {
+    val something = readln()
+
+    val d = something.toDouble()
+    val f = d.toFloat()
+    val i = f.toInt()
+    val b = i.toByte()
+
+    println(d)
+    println(f)
+    println(i)
+    println(b)
+    println(something.toBoolean())
+}</code></pre>
+<p>Imagine, we have the following input:</p>
+<pre><code class="language-kotlin">1000.0123456789</code></pre>
+<p>The program will output the following:</p>
+<pre><code class="language-kotlin">1000.0123456789
+1000.0123
+1000
+-24
+false</code></pre>
+<p>Let's take a closer look at the output. The number represented by a string is successfully converted to <code class="language-kotlin">Double</code>, as it has a suitable format. This number can be saved as a <code class="language-kotlin">Double</code> type safely. Then the number is converted to <code class="language-kotlin">Float</code>. We see a loss here, as this type can store fewer decimal numbers. The <code class="language-kotlin">Int</code> conversion cuts the fractional part. The number 1000 is larger than the <code class="language-kotlin">Byte</code> type can store (from -128 to 127), so we have a type overflow (-24). The result of converting the input string to  <code class="language-kotlin">Boolean</code> is <code class="language-kotlin">false</code>, because the value is not <code class="language-kotlin">"true"</code>.</p>
+<h5 id="conclusion" style="text-align: center;">Conclusion</h5>
+<p>We hope this lesson has helped you understand the principles of conversion between basic data types. We have covered two main types of conversion: <strong>numeric</strong> and <strong>string</strong>. Numeric conversion is useful when you need to convert values between various numeric types. Kotlin allows you to convert numerics even if the target and source size types are different by invoking special functions — <code class="language-kotlin">toInt()</code>, <code class="language-kotlin">toLong()</code>, and <code class="language-kotlin">toDouble()</code>. String conversion is handy when you need to get a string representation of some value. It can be done with the <code class="language-kotlin">toString()</code> function. You can convert a value of any type. </p></body></html>

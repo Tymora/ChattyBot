@@ -1,0 +1,46 @@
+<h2>Reading data with a readln</h2>
+<p>In this topic, you will learn how we can read information from the user input and interact with it. Quite often, programs prompt the user for some specific information. We will also see how to manage variables with the function <code class="language-kotlin">readln()</code> and work with different types.</p><h5 id="standard-input">Standard input</h5><p><strong>Standard input</strong> is a stream of data that goes into the program. It is supported by the operating system. By default, standard input obtains data from the keyboard, but it is also possible to get it from a file.</p><p>Not all programs need to use standard input, but still, you're likely to use it quite often. A typical way of solving programming problems goes as follows:</p><ul><li><p>Read data from the standard input;</p></li><li><p>Process data to obtain a result;</p></li><li><p>Output the result to the standard output.</p></li></ul><p>Before you start writing programs that do something useful, you need to understand how to read data from the standard input.</p><h5 id="using-readln">Using readln</h5><p>In Kotlin, to read data from the standard input you can use the function <code class="language-kotlin">readln()</code>. It reads the whole line as a string:</p><pre><code class="language-kotlin">val line = readln()</code></pre><p>The variable line has the type String because the expression <code class="language-kotlin">readln()</code> returns a value of this type.</p><p>If you are working with older versions of the Kotlin language you need to use <code class="language-kotlin">readLine()!!</code> instead of <code class="language-kotlin">readln()</code>. These functions do the same thing, but <code class="language-kotlin">readln()</code> is shorter and preferred, so if you're working with Kotlin 1.6 or higher, use <code class="language-kotlin">readln()</code>.</p><pre><code class="language-kotlin">val line = readLine()!! // before Kotlin 1.6</code></pre><p></p><div class="alert alert-primary"><p>You are probably a little confused about the exclamation marks. This construction guarantees non-empty input to the compiler. We will talk about it in more detail later.</p></div><p></p><p>Here is a simple program that reads a line from the standard input and sends it to the standard output:</p><pre><code class="language-kotlin">fun main() {
+    val line = readln()
+    println(line)
+}</code></pre><p>Here is an example of valid input data:</p><pre><code class="language-no-highlight">Hello, Kotlin</code></pre><p>The output would be the following:</p><pre><code class="language-no-highlight">Hello, Kotlin</code></pre><p>By default, to see the information about the entered data you need to press <em>Enter</em>. </p><p>Now, let's see how you can read different types of data using <code class="language-kotlin">readln()</code>.</p><h5 id="toint-and-tolong">toInt() and toLong()</h5><p>Sometimes we need to get numeric data from the user. For example, suppose we need to get information about the user's age or graduation year. To work with numeric values, use the function <code class="language-kotlin">toInt()</code>. To convert the input to an integer, use the <code class="language-kotlin">toInt()</code>function and dot syntax:</p><pre><code class="language-kotlin">println("Enter any number: ") 
+val number = readln().toInt() 
+print("You entered the number: ")
+print(number) </code></pre><p>Here is an example of valid input data:</p><pre><code class="language-no-highlight">56</code></pre><p>The output is:</p><pre><code class="language-no-highlight">Enter any number: 
+56 
+You entered the number: 56</code></pre><p>In case we need to process a larger number, for example, the cost of a large and luxurious yacht, use the function <code class="language-kotlin">toLong()</code>:</p><pre><code class="language-kotlin">println("How much is your yacht worth?")
+val cost = readln().toLong()
+print("You entered: ")
+print(cost)
+</code></pre><p>The output is:</p><pre><code class="language-no-highlight">How much is your yacht worth?
+10000000000
+You entered: 10000000000</code></pre><h5 id="todouble-and-toboolean">toDouble() and toBoolean()</h5><p>What if we need to get more accurate values? For example, suppose we need to know the exact price of a liter of gasoline. In this case, we cannot use <code class="language-kotlin">toInt()</code> or <code class="language-kotlin">toLong()</code> since likely we won't have a whole number. For this purpose, use the function <code class="language-kotlin">toDouble()</code>:</p><pre><code class="language-kotlin">println("Enter any double type number:")
+val number = readln().toDouble()
+println("You entered the number: ")
+print(number)</code></pre><p>The output is:</p><pre><code class="language-no-highlight">Enter any double type number:
+0.5673421
+You entered the number: 
+0.5673421</code></pre><p>The same logic works for Boolean: use the function <code class="language-kotlin">toBoolean()</code>:</p><pre><code class="language-kotlin">println("The earth is flat. Type true or false:")
+val answer = readln().toBoolean()
+print("The earth is flat: ")
+print(answer)</code></pre><p>The output is: </p><pre><code class="language-no-highlight">The earth is flat. Type true or false:
+false
+The earth is flat: false</code></pre><h5 id="multiple-inputs">Multiple inputs </h5><p>Is it possible to receive and process multiple inputs? The answer is yes: all we need to do is declare a few different variables, all with the value of the function <code class="language-kotlin">readln()</code>. If you want to enter several values and their data types are different, then you need to press <em>Enter</em> in order to separate the different types.</p><p>Consider an example that illustrates the input and output of multiple values: </p><pre><code class="language-kotlin">val a = readln()
+val b = readln().toInt()
+val c = readln()
+print(a)
+print(" ")
+print(b)
+print(" ")
+print(c)</code></pre><p>Here is an example of valid <code class="language-kotlin">String</code> and <code class="language-kotlin">Int</code> input values: </p><pre><code class="language-no-highlight">You earned
+100
+points!</code></pre><p>The output is: </p><pre><code class="language-no-highlight">You earned 100 points!</code></pre><p>As you can see, getting multiple values of different data types is not difficult. You just need to declare several variables, assign them the desired <code class="language-kotlin">readln()</code> function, and display them correctly in the console.</p><h5 id="reading-multiple-values-in-one-line">Reading multiple values in one line</h5><p>If you need to read two values in one line, you can use this construction:</p><pre><code class="language-kotlin">val (a, b) = readln().split(" ")
+println(a)
+println(b)</code></pre><p> Here is an example of input data:</p><pre><code class="language-no-highlight">Hello, Kotlin</code></pre><p>The output would be the following:</p><pre><code class="language-no-highlight">Hello,
+Kotlin</code></pre><p>This construction splits the input string at spaces and stores the words in the variables <code class="language-kotlin">a</code> and <code class="language-kotlin">b</code>. We will discuss this in more detail later.</p><p>In the same way, you can read up to four values per line:</p><pre><code class="language-kotlin">val (a, b, c, d) = readln().split(" ")
+println(a)
+println(b)
+println(c)
+println(d)</code></pre><p>  Here is an example of input data:</p><pre><code class="language-no-highlight">Have a nice Kotlin</code></pre><p>The output would be the following:</p><pre><code class="language-no-highlight">Have
+a
+nice
+Kotlin</code></pre><h5 id="conclusion">Conclusion </h5><p>As you see, receiving input is very simple. All we need is to declare a variable with the value of the <code class="language-kotlin">readln()</code> function. The <code class="language-kotlin">readln()</code> function automatically converts the input to the <code class="language-kotlin">String</code> type. Your program can handle string, number, and boolean input using type conversion. To convert, use the functions <code class="language-kotlin">toInt()</code>, <code class="language-kotlin">toLong()</code>, <code class="language-kotlin">toDouble()</code>, and <code class="language-kotlin">toBoolean()</code>. You can also input and output multiple values of the same or different types.</p>

@@ -1,0 +1,25 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: '&lt;&lt;'
+- text: '&gt;'
+- text: ==
+- text: =
+- text: '!='
+- text: '&lt;='
+- text: '&lt;&gt;'
+- text: '&gt;&gt;&gt;'
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4529#comment
+status: Solved
+record: -1
+local_check: false

@@ -1,0 +1,23 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: 9 in range
+- text: 10 in range
+- text: 11 in range
+- text: 12 in range
+- text: 13 in range
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4636#comment
+status: Solved
+record: -1
+custom_name: Check the value
+local_check: false

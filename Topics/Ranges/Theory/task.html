@@ -1,0 +1,47 @@
+<h2>Ranges</h2>
+<p>Imagine a situation when you need to check whether the integer variable <code class="language-kotlin">c</code> is greater than or equal to <code class="language-kotlin">a</code> and less than or equal to <code class="language-kotlin">b</code>. To do that you may write something like this:</p>
+
+<pre><code class="language-kotlin">val within = a &lt;= c &amp;&amp; c &lt;= b</code></pre>
+
+<p>This code works well. However, Kotlin provides a more convenient way to do the same thing using <strong>ranges</strong>:</p>
+
+<pre><code class="language-kotlin">val within = c in a..b
+</code></pre>
+
+<p>Here, <code class="language-kotlin">a..b</code> is a range of numbers from <code class="language-kotlin">a</code> to <code class="language-kotlin">b</code> (including both border values), <code class="language-kotlin">in</code> is a <strong>special keyword </strong>that is used to check whether a value is within a range. Later you will see that this keyword can be used with other types as well.</p>
+
+<p>The value of <code class="language-kotlin">within</code> is <code class="language-kotlin">true</code> if <code class="language-kotlin">c</code> belongs to the range inclusively, otherwise, it is <code class="language-kotlin">false</code>.</p>
+
+<p>Here are some examples:</p>
+
+<pre><code class="language-kotlin">println(5 in 5..15)  // true
+println(12 in 5..15) // true
+println(15 in 5..15) // true
+println(20 in 5..15) // false</code></pre>
+
+<p>If you need to exclude the right border, you may subtract 1 from it:</p>
+
+<pre><code class="language-kotlin">val withinExclRight = c in a..b - 1 // a &lt;= c &amp;&amp; c &lt; b</code></pre>
+
+<p>If you need to check that a value is not within a range, just add <code class="language-kotlin">!</code> (not) before <code class="language-kotlin">in</code>.</p>
+
+<pre><code class="language-kotlin">val notWithin = 100 !in 10..99 // true</code></pre>
+
+<p>You may combine ranges using standard logical operators. The code below checks if <code class="language-kotlin">c</code> is within one of three ranges.</p>
+
+<pre><code class="language-kotlin">val within = c in 5..10 || c in 20..30 || c in 40..50 // true if c is within at least one range</code></pre>
+
+<p>You can assign a range to a variable and use it later.</p>
+
+<pre><code class="language-kotlin">val range = 100..200
+println(300 in range) // false</code></pre>
+
+<p>In addition to integer ranges, you can also use ranges of characters and even strings (according to dictionary order).</p>
+
+<pre><code class="language-kotlin">println('b' in 'a'..'c') // true
+println('k' in 'a'..'e') // false
+
+println("hello" in "he".."hi") // true
+println("abc" in "aab".."aac") // false</code></pre>
+
+<p>This is enough to understand ranges for integer numbers and characters. We won't cover other type ranges here.</p>

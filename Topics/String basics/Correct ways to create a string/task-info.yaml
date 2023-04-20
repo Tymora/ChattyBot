@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: val str = "Hello"
+- text: val str = 'Hello'
+- text: val str = s"Hello"
+- text: val str = "Hel" + "l" + 'o'
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/12557#comment
+status: Solved
+record: -1
+local_check: false

@@ -1,0 +1,22 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    // write your function here
+
+    fun main() {
+        val number1 = readLine()!!.toInt()
+        val number2 = readLine()!!.toInt()
+        val number3 = readLine()!!.toInt()
+        val number4 = readLine()!!.toInt()
+
+        println(isGreater(number1, number2, number3, number4))
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4587#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Sat, 15 Apr 2023 15:50:47 UTC
+record: -1

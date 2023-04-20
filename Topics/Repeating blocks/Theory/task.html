@@ -1,0 +1,31 @@
+<h2>Repeating blocks</h2>
+<p>Sometimes, you need to repeat a group of statements several times. You can just copy-paste the expression. What if you want to repeat it one hundred thousand times? Copy-paste is clumsy in this case.</p><p>Fortunately for us, Kotlin provides several special statements to repeat blocks of code multiple times. These statements are known as <strong>loops</strong>. They are useful when it comes to repeating multiple statements.</p><h5 id="repeat-loop">Repeat loop</h5><p>To use the simplest loop, write <code class="language-kotlin">repeat(n)</code> and a sequence of statements in curly braces <code class="language-kotlin">{...}</code>. <code class="language-kotlin">n</code> is an integer that determines how many times these statements are going to be repeated.</p><pre><code class="language-kotlin">repeat(n) {
+    // statements
+}</code></pre><p>For example, the program below prints <code class="language-kotlin">Hello</code> three times:</p><pre><code class="language-kotlin">fun main() {
+    repeat(3) {
+        println("Hello")
+    }
+}</code></pre><p>Output:</p><pre><code class="language-kotlin">Hello
+Hello
+Hello</code></pre><p><b>Tip:</b> If <code class="language-kotlin">n</code> is zero or a negative number, Kotlin will ignore the loop. If <code class="language-kotlin">n</code> is one, the statements will be executed only once.</p><p>Kotlin has the opportunity to control the current iteration with the <code class="language-kotlin">it</code> name:</p><pre><code class="language-kotlin">fun main() {
+    repeat(3) {
+        println(it)
+    }
+}</code></pre><p>Output: </p><pre><code class="language-kotlin">0
+1
+2</code></pre><p></p><div class="alert alert-primary"><p>The code in curly braces is commonly called a "lambda expression". It's a function that doesn't have name and is passed immediately as an expression. You can find more information about lambdas <a href="https://hyperskill.org/learn/step/6154" rel="noopener noreferrer nofollow" target="_blank">here</a>.</p></div><p></p><h5 id="reading-and-processing-data-in-a-loop">Reading and processing data in a loop</h5><p>You can read data from the standard input, declare variables and even perform calculations inside the <code class="language-kotlin">repeat</code> statement.</p><p>Take a look at this example. The program below reads numbers from the standard input and calculates their sum. The first number is not a part of the sum, it determines the length of the input sequence.</p><pre><code class="language-kotlin">fun main() {    
+    val n = readln().toInt()
+    var sum = 0
+    
+    repeat(n) {
+        val next = readln().toInt()
+        sum += next
+    }
+    
+    println(sum)
+}</code></pre><p>This code reads a length of a number sequence and assigns it to the <code class="language-kotlin">n</code> variable. After that, it creates a variable to store the total sum. The code reads the next number and adds it to the sum exactly <code class="language-kotlin">n</code> times. Then, the loop stops, and the program prints the total sum.</p><p>Here is an example of input numbers:</p><pre><code class="language-kotlin">5
+40
+15
+30
+25
+50</code></pre><p>Output:</p><pre><code class="language-kotlin">160</code></pre><h5 id="conclusion">Conclusion</h5><p>Loops are useful when you need to repeat a statement in your code. In this topic, we have discussed the <code class="language-kotlin">repeat()</code> loop. It is a very simple tool. Define the number of executions, then the statement in curly braces, and off you go! In the next lesson, we will learn about advanced loops and how they can be applied to more complex issues.</p>

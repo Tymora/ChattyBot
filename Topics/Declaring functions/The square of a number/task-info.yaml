@@ -1,0 +1,19 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    // write your code here
+
+    /* Do not change code below */
+    fun main() {
+        val number = readLine()!!.toInt()
+        println(square(number))
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4592#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Sat, 15 Apr 2023 15:44:04 UTC
+record: -1

@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: print(someText{someText - 1})
+- text: print(someText[someText.length])
+- text: print(someText.last())
+- text: print(someText[someText.length - 1])
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/18839#comment
+status: Solved
+record: -1
+local_check: false

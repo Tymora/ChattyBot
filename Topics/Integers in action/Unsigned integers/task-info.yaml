@@ -1,0 +1,22 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: These are integers that, depending on the situation, behave both positive
+    and negative.
+- text: These are integers that can contain only non-negative values.
+- text: It's just another name for regular integers.
+- text: These are all positive numbers of <code>Int</code> type.
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/17071#comment
+status: Solved
+record: -1
+local_check: false

@@ -1,0 +1,144 @@
+<h2>Declaring functions</h2>
+<html><body><h5 id="program-decomposition" style="text-align: center;">Program decomposition</h5>
+<p>Kotlin supports <strong>functions</strong>, a very useful feature, to say the least. A function is a sequence of instructions put together to operate. In a way, it is a kind of subprogram. A function has a <strong>name</strong>, so you can invoke it when you need it. Kotlin standard library has lots of functions, for example <code class="language-kotlin">println</code>. If they are not enough, you can declare a new function and then invoke it the same way as a standard function.</p>
+<p>Functions can divide a program into small reusable pieces. It is called <strong>decomposition</strong>. You can call these pieces as many times as you need, instead of repeating them. A decomposed program has a modular structure; it is easier to modify and maintain than a program with one <code class="language-kotlin">main</code> function that contains a thousand lines. This idea comes from <strong>procedural programming</strong>.</p>
+<h5 id="basic-syntax" style="text-align: center;">Basic syntax</h5>
+<p>To declare a new function, you need to indicate the <code class="language-kotlin">fun</code> keyword and a function name, a list of parameters in parentheses, and the type of the result value. So, it looks like this:</p>
+<pre><code class="language-kotlin">fun functionName(p1: Type1, p2: Type2, ...): ReturnType {
+    // body
+    return result
+}</code></pre>
+<p>A function has the following components:</p>
+<ul>
+<li>a name that follows the same rules and recommendations as a variable name;</li>
+<li>a list of parameters in parentheses. Each parameter has a name and a type separated by a colon <code class="language-kotlin">:</code>. All the parameters are separated by commas <code class="language-kotlin">,</code>;</li>
+<li>the type of the return value (optional);</li>
+<li>a body that contains statements and expressions;</li>
+<li>the keyword <code class="language-kotlin">return</code> followed by the result (also optional).</li>
+</ul>
+<p>The types of parameters and the result can be of any type including <code class="language-kotlin">Int</code>, <code class="language-kotlin">Double</code>, <code class="language-kotlin">Boolean</code>, <code class="language-kotlin">String</code>, and so on.</p>
+<h5 id="defining-a-simple-function" style="text-align: center;">Defining a simple function</h5>
+<p>Let's declare a function that calculates the sum of integer numbers and then returns it.</p>
+<pre><code class="language-kotlin">fun sum(a: Int, b: Int): Int {
+    val result = a + b
+    return result
+}
+
+fun main() {
+    val result1 = sum(2, 5)
+    println(result1) // 7
+    
+    val result2 = sum(result1, 4)
+    println(result2) // 11
+}</code></pre>
+<p>When we invoke our function for the first time, we pass two values <code class="language-kotlin">2</code> and <code class="language-kotlin">5</code> to it. We assign them to <code class="language-kotlin">a</code> and <code class="language-kotlin">b</code> parameters respectively. The function returns the value of the result. The <code class="language-kotlin">result</code> type is the same as the type of the return value declared in the function (<code class="language-kotlin">Int</code>). When we invoke the function the second time, we pass the value of the <code class="language-kotlin">result1</code>, <code class="language-kotlin">7</code> and <code class="language-kotlin">4</code> as its arguments. The function returns <code class="language-kotlin">11</code>.</p>
+<p><span style="background-color: transparent; color: #000000; font-size: 11pt; font-variant: normal;"></span></p><div class="alert alert-warning">The arguments of a function can be accessed only in the function.<span style="background-color: transparent; color: #000000; font-size: 11pt; font-variant: normal;"></span></div><p></p>
+<h5 id="function-parameters" style="text-align: center;">Function parameters</h5>
+<p>As you may know, parameters represent the input data of a function. You can declare a function that takes one or more parameters of the same or different types. Also, you can declare a function that does not have parameters at all, but the parentheses are still required.</p>
+<p>Here are some examples:</p>
+<pre><code class="language-kotlin">/**
+ * The function returns its argument
+ */
+fun identity(a: Int): Int {
+    return a
+}
+
+/**
+ * The function returns the sum of two Ints
+ */
+fun sum(a: Int, b: Int): Int {
+    return a + b
+}
+
+/**
+ * The function just returns 3
+ */
+fun get3(): Int {
+    return 3
+}
+
+fun main() {
+    println(identity(1000)) // 1000
+    println(sum(200, 300)) // 500    
+    println(get3()) // 3
+}
+</code></pre>
+<p>As you can see, we can invoke a function from the <code class="language-kotlin">main</code> function, but it is also possible to invoke a function from another regular function.</p>
+<p><span style="color: #000000;">Since Kotlin 1.4, you can put a comma at the end of the parameters list. It can be very useful if you have a lot of arguments or use multi-line </span>syntax, because you may easily copy-paste variables:</p>
+<pre><code class="language-kotlin">fun sum(a: Int, b: Int, ): Int { // you can easily add some arguments
+    // 
+}
+
+fun max(
+    a: Int,
+    b: Int,
+): Int { // you can swap arguments without worrying about commas
+    // 
+}</code></pre>
+<h5 id="return-type" style="text-align: center;">Return type</h5>
+<p>A function can return a single value or nothing. If a function returns something, its body must have the <code class="language-kotlin">return</code> keyword followed by the result. Sometimes, you need a function that returns nothing. There are two ways to declare a function that returns nothing:</p>
+<ul>
+<li>omit the return type part:</li>
+</ul>
+<pre><code class="language-kotlin">/**
+ * The function prints the values of a and b
+ */
+fun printAB(a: Int, b: Int) {
+    println(a)
+    println(b)
+}</code></pre>
+<ul>
+<li>specify the special <code class="language-kotlin">Unit</code> type as the return type:</li>
+</ul>
+<pre><code class="language-kotlin">/**
+ * The function prints the sum of a and b
+ */
+fun printSum(a: Int, b: Int): Unit {
+    println(a + b)
+}</code></pre>
+<h5 id="function-body" style="text-align: center;">Function body</h5>
+<p>You can write any statements in a function body, for example, inside the <code class="language-kotlin">main</code> function. In addition to the parameters, you can declare new variables that are visible in the function only.</p>
+<p>For example, this function extracts the last digit of a number and then returns it.</p>
+<pre><code class="language-kotlin">fun extractLastDigit(number: Int): Int {
+    val lastDigit = number % 10
+    return lastDigit
+}</code></pre>
+<p>You can simplify this code by excluding the extra variable:</p>
+<pre><code class="language-kotlin">fun extractLastDigit(number: Int): Int {
+    return number % 10
+}</code></pre>
+<p>You can perform any operations in the function body. For example, this function uses a relational operation. It checks whether the number is positive or not:</p>
+<pre><code class="language-kotlin">fun isPositive(number: Int): Boolean {
+    return number &gt; 0
+}</code></pre>
+<p>The function <code class="language-kotlin">isPositive</code> takes an integer number and returns a <code class="language-kotlin">Boolean</code> value because the result of the expression <code class="language-kotlin">number &gt; 0</code> is either <code class="language-kotlin">true</code> or <code class="language-kotlin">false</code>.</p>
+<p>Take a look at one more example. <span style="background-color: transparent; color: #000000; font-size: 11pt; font-variant: normal;">T</span>he line after the return statement will not be executed (the so-called <strong>unreachable</strong> code). These lines clutter up your program:</p>
+<pre><code class="language-kotlin">/**
+ * It returns "hello"
+ */
+fun getGreeting(): String {
+    return "hello"   // Ends the function
+    println("hello") // Will not be executed
+}</code></pre>
+<h5 id="single-expression-functions" style="text-align: center;">Single-expression functions</h5>
+<p>If a function returns a single expression, you can write it without curly braces:</p>
+<pre><code class="language-kotlin">fun sum(a: Int, b: Int): Int = a + b
+
+fun sayHello(): Unit = println("Hello")
+
+fun isPositive(number: Int): Boolean = number &gt; 0</code></pre>
+<p>Specifying the return type is optional, as it can be inferred automatically:</p>
+<pre><code class="language-kotlin">fun sum(a: Int, b: Int) = a + b // Int
+
+fun sayHello() = println("Hello") // Unit
+
+fun isPositive(number: Int) = number &gt; 0 // Boolean</code></pre>
+<h5 id="idiom" style="text-align: center;">Idiom</h5>
+<p>A single-expression function is <a href="https://kotlinlang.org/docs/idioms.html#single-expression-functions" rel="noopener noreferrer nofollow" target="_blank">idiomatic</a>. They are useful when you need a small function to do something like checking a simple condition. If your function returns only a single expression, try to stick to this form. You also may omit the return type, as the compiler can often infer it from the context. Look at the example. The single-expression function is shorter and easier to understand. This syntax may be awkward at first, but if you use it often, you will find it very convenient:</p>
+<pre><code class="language-kotlin">fun theAnswer() = 42   // short and clear
+...
+fun theAnswer(): Int { // equivalent common function
+    return 42
+}</code></pre>
+<h5 id="conclusion" style="text-align: center;">Conclusion</h5>
+<p>A Kotlin function is a special kind of expression that has a body, parameters, and some sort of return. Functions can make your code straightforward. It is always cool when you can decompose a program into small, clear, and comprehensible pieces. To make your code more readable, choose good names for your functions. Remember, a set of concise functions is always better than one big function that does just about everything. And don't forget about idioms.</p></body></html>

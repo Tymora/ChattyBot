@@ -1,0 +1,15 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    fun main() {
+        // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/4649#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: Fri, 14 Apr 2023 19:57:26 UTC
+record: -1

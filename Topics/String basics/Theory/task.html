@@ -1,0 +1,70 @@
+<h2>String basics</h2>
+<p>As you know, Kotlin has a lot of data types such as <code class="language-kotlin">String</code>, <code class="language-kotlin">Int</code>, and <code class="language-kotlin">Double</code>. In this topic, we will focus on the <code class="language-kotlin">String</code> type. This is a very useful type as even a simple "Hello world!" program uses strings. A string is a sequence of zero or more characters enclosed by double quotes e.g. "John", "". You will surely use strings on a regular basis in your future projects. In this topic, we will look at some important basics of working with strings.</p><h5 id="the-length-of-a-string">The length of a string</h5><p>You will often need  to get the length of a <code class="language-kotlin">String</code>. The length of the string is determined by the number of characters that are enclosed between the double quotes. To do this, simply use <code class="language-kotlin">.length</code> which gives a value of the <code class="language-kotlin">Int</code> type:</p><pre><code class="language-kotlin">val language = "Kotlin"
+println(language.length) // 6
+
+val empty = ""
+println(empty.length) // 0</code></pre><h5 id="concatenating-strings">Concatenating strings</h5><p>Another common operation with <code class="language-kotlin">String</code> is <strong>concatenation</strong>. It is used to construct one string out of other strings.</p><p>Two strings can be concatenated with the <code class="language-kotlin">+</code>:</p><pre><code class="language-kotlin">val str1 = "ab"
+val str2 = "cde"
+val result = str1 + str2 // "abcde"</code></pre><p> When we concatenate two strings, a new string is created.</p><pre><code class="language-kotlin">val one = "1"
+val two = "2"
+val twelve = one + two 
+println(one)      // 1, no changes
+println(two)      // 2, no changes
+println(twelve)   // 12</code></pre><p>You can concatenate multiple strings in the same expression:</p><pre><code class="language-kotlin">val firstName = "John"
+val lastName = "Smith"
+val fullName = firstName + " " + lastName</code></pre><p></p><div class="alert alert-warning"><p>Pay attention<strong>, </strong><code class="language-kotlin">str1 + str2</code> is not the same as <code class="language-kotlin">str2 + str1</code> because the concatenation is not a commutative operation, unlike addition.</p></div><p></p><h5 id="appending-values-to-strings">Appending values to strings</h5><p>The <code class="language-kotlin">+</code> also works for appending values of different types to a <code class="language-kotlin">String</code>. The value is automatically converted to a <code class="language-kotlin">String</code> and then concatenated to the target <code class="language-kotlin">String</code>:</p><pre><code class="language-kotlin">val stringPlusBoolean = "abc" + 10 + true
+println(stringPlusBoolean) // abc10true
+
+val code = "123" + 456 + "789"
+println(code) // 123456789</code></pre><p></p><div class="alert alert-warning"><p>An expression must start with a <code class="language-kotlin">String</code>.</p></div><p></p><p>Take a look at the example below. It wouldn't work because the first operand is a number:</p><pre><code class="language-kotlin">val errorString = 10 + "abc" // an error here!</code></pre><p>Let's consider a different situation:</p><pre><code class="language-kotlin">val stringAndNumbers = "abc" + 11 + 22
+println(stringAndNumbers) // abc1122</code></pre><p>Why did that work? First, it appends <code class="language-kotlin">11</code> to the string <code class="language-kotlin">"abc"</code>, and then it appends <code class="language-kotlin">22</code> to the string <code class="language-kotlin">"abc11"</code>.</p><p>You may concatenate a character with a <code class="language-kotlin">String</code> to get a new <code class="language-kotlin">String</code>:</p><pre><code class="language-kotlin">val charPlusString = 'a' + "bc"
+println(charPlusString) // abc
+val stringPlusChar = "de" + 'f'
+println(stringPlusChar) // def</code></pre><p>Also, you may append any value to the result, because characters plus a string gives you a <code class="language-kotlin">String</code>:</p><pre><code class="language-kotlin">val charPlusStringPlusInt = 'a' + "bc" + 123
+println(charPlusStringPlusInt) // abc123</code></pre><p>We will discuss how to work with characters later, but for now, just remember that you can concatenate characters and strings to get a <code class="language-kotlin">String</code> value. If you are interested in how characters operate with integers, look at this <a href="https://hyperskill.org/learn/step/4680" rel="noopener noreferrer nofollow" target="_blank">topic</a>.</p><h5 id="repeating-the-string">Repeating the string</h5><p>If you need to repeat one string two or more times, then hold your loops: Kotlin provides the <code class="language-kotlin">repeat</code> function:</p><pre><code class="language-kotlin">print("Hello".repeat(4)) // HelloHelloHelloHello
+</code></pre><p>Now, imagine your friend senior developer gave you a secret on how to become the best programmer:</p><p> <img alt="To do: eat, sleep, code, repeat" height="740" src="https://ucarecdn.com/a9643a6b-016f-4d99-8892-0c3d2bfe10f2/" width="578"/></p><p> </p><p>Let's try to transform this piece of paper to a code snippet that prints your schedule for every day of the week:</p><pre><code class="language-kotlin">println("Eat. Sleep. Code.\n".repeat(7)) // \n gives you a line feed (new line)</code></pre><p>  And here you have your week schedule:</p><pre><code class="language-no-highlight">Eat. Sleep. Code.
+Eat. Sleep. Code.
+Eat. Sleep. Code.
+Eat. Sleep. Code.
+Eat. Sleep. Code.
+Eat. Sleep. Code.
+Eat. Sleep. Code.</code></pre><p>No time for procrastination!</p><h5 id="raw-string"> Raw string</h5><p>Sometimes you need some special symbols like tabs or quote marks in your string. You can do it with the help of <strong>escape sequences</strong>. For example:</p><pre><code class="language-kotlin">// prints 'H' is the first letter of "Hello world!" string.
+println("\'H\' is the first letter of \"Hello world!\" string.")</code></pre><p>This looks a little heavy. If you need to write a fairly large text with newlines and special characters, it can be difficult to read. </p><p>For these cases, you can use a <strong>raw string</strong>. A raw string can contain newlines and any other characters. You just need to wrap the text in triple quotes (<code class="language-kotlin">"""</code>):</p><pre><code class="language-kotlin">val largeString = """
+    This is the house that Jack built.
+      
+    This is the malt that lay in the house that Jack built.
+       
+    This is the rat that ate the malt
+    That lay in the house that Jack built.
+       
+    This is the cat
+    That killed the rat that ate the malt
+    That lay in the house that Jack built.
+""".trimIndent() // removes the first and the last lines and trims indents
+print(largeString)</code></pre><p>This text prints:</p><pre><code class="language-no-highlight">This is the house that Jack built.
+
+This is the malt that lay in the house that Jack built.
+
+This is the rat that ate the malt
+That lay in the house that Jack built.
+
+This is the cat
+That killed the rat that ate the malt
+That lay in the house that Jack built.</code></pre><p>As you can see, we also used the function <code class="language-kotlin">.trimIndent()</code>. It cuts off all the lines of the common minimal indent and removes the first and last lines if they are empty. For example:</p><pre><code class="language-kotlin">val unevenString = """
+        123
+         456
+          789""".trimIndent()
+print(unevenString)
+println()
+
+val rawString = """123
+         456
+          789
+""".trimIndent()
+print(rawString )</code></pre><p>This code prints:</p><pre><code class="language-no-highlight">123
+ 456
+  789
+
+123
+         456
+          789</code></pre><h5 id="conclusion">Conclusion</h5><p>Now you know the most basic <code class="language-kotlin">String</code> operations! These functions are pretty simple but absolutely crucial in programming. There are actually many other useful <code class="language-kotlin">String</code> operations, but you will learn about them a little later. Good luck with your tasks!</p>

@@ -1,0 +1,12 @@
+<h2>Balance checker</h2>
+<html><body><p>Create an algorithm that prevents an e-wallet account from going into negative balance. The account should be debited for each purchase sequentially while the balance allows it.</p>
+<p>The input should include:</p>
+<ol>
+<li>On the first line, a single integer number representing the available balance.</li>
+<li>On the second line, a sequence of integers representing purchase payments, which should be processed one after another.</li>
+</ol>
+<p>The output should contain:</p>
+<ol>
+<li>If there is not enough money for a purchase, output <code class="java">Error, insufficient funds for the purchase. Your balance is N, but you need M.</code>, where <code class="java">N</code> is the remaining balance on the account and <code class="java">M</code> is the cost of the items you cannot afford.</li>
+<li>If there is enough money for all the purchases, output <code class="java">Thank you for choosing us to manage your account! Your balance is N.</code>, where <code class="java">N</code> is the amount of money left after the purchases.</li>
+</ol></body></html><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">10000<br>5000 3000</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">Thank you for choosing us to manage your account! Your balance is 2000.</code></pre><br><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">1000<br>500 500</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">Thank you for choosing us to manage your account! Your balance is 0.</code></pre><br><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">5000<br>500 2000 3000</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">Error, insufficient funds for the purchase. Your balance is 2500, but you need 3000.</code></pre><br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>

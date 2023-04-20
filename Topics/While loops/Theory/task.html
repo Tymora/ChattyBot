@@ -1,0 +1,53 @@
+<h2>While loops</h2>
+<html><body><p>There are several ways to repeat a block of code while a certain condition is <code class="language-kotlin">true</code>. In this topic, we will learn how to do it with two loops: <code class="language-kotlin">while</code> and <code class="language-kotlin">do...while</code>. The difference between them is the repetition order and the evaluation of the condition.</p><h5 id="while-loop">While loop</h5><p>The <code class="language-kotlin">while</code> loop includes a block of code and a <strong>condition</strong>,<strong> </strong>which is a <strong>boolean expression</strong>. If the condition is <code class="language-kotlin">true</code>, the loop initiates the statements. They are repeated until the condition becomes <code class="language-kotlin">false</code>. This loop checks the condition <strong>before </strong>the execution, so it is also known as a <strong>pre-test loop</strong>. Take a look at the example:</p><pre><code class="language-kotlin">while (condition) {
+    // body: do something repetitive
+}</code></pre><p>The loop body can contain any kind of statement: declaring variables, reading data from the standard input, conditional expressions, and even nested loops.</p><p>You can also write an <strong>infinite loop</strong> if the condition remains <code class="language-kotlin">true</code>:</p><pre><code class="language-kotlin">while (true) {
+    // body: do something indefinitely
+}</code></pre><p>We will take a closer look at infinite loops later.</p><p>For now, consider the example below. The program uses a while loop to print integer numbers only when the variable is less than <code class="language-kotlin">5</code>.</p><pre><code class="language-kotlin">fun main() {
+    var i = 0
+
+    while (i &lt; 5) {
+        println(i)
+        i++
+    }
+
+    println("Completed")
+}</code></pre><p>Let us explain the work behind this loop. First, <code class="language-kotlin">0</code> is assigned to the mutable variable <code class="language-kotlin">i</code>. Before the first execution of the loop, the program checks whether the expression <code class="language-kotlin">i &lt; 5</code> is <code class="language-kotlin">true</code>. As <code class="language-kotlin">i</code> is 0, the loop is activated. The loop body has two statements: first, it displays the current value of <code class="language-kotlin">i</code> and second, it increments it by <code class="language-kotlin">1</code>. After this, the expression <code class="language-kotlin">i &lt; 5</code> is evaluated again. The <code class="language-kotlin">i</code> becomes <code class="language-kotlin">1</code>; it is also <code class="language-kotlin">true</code>, so the process repeats. It keeps happening until <code class="language-kotlin">i</code> becomes <code class="language-kotlin">5</code>. <code class="language-kotlin">i &lt; 5</code> becomes <code class="language-kotlin">false</code>, so the execution of this loop terminates. The program proceeds to the next statement and prints <code class="language-kotlin">Completed</code>. This is the output of the loop:</p><pre><code class="language-no-highlight">0
+1
+2
+3
+4
+Completed</code></pre><p>Loops can be used to process characters, strings, and any other data types. The program below displays English letters in a single line.</p><pre><code class="language-kotlin">fun main() {
+    var letter = 'A'
+    
+    while (letter &lt;= 'Z') {
+        print(letter)
+        letter++
+    }
+}</code></pre><p>The program takes the first letter <code class="language-kotlin">A</code> and then executes the loop until the letter becomes <code class="language-kotlin">Z</code>. The program also prints the current character and goes on to the next one. So the output is:</p><pre><code class="language-no-highlight">ABCDEFGHIJKLMNOPQRSTUVWXYZ</code></pre><p>It is possible to get the next character (according to the Unicode table) using the increment operator.</p><p>Our third example contains a program that reads any number of words from the standard input and then prints them. It uses the <code class="language-kotlin">hasNext</code> function of <code class="language-kotlin">Scanner</code> to check whether the input has a value.</p><pre><code class="language-kotlin">import java.util.*
+
+fun main() {
+    val scanner = Scanner(System.`in`)
+    while (scanner.hasNext()) {
+        val next = scanner.next()
+        println(next)
+    }
+}</code></pre><p>Input:</p><pre><code class="language-no-highlight">Kotlin is a modern language</code></pre><p>Output:</p><pre><code class="language-no-highlight">Kotlin
+is
+a
+modern
+language</code></pre><p>Use <code class="language-kotlin">scanner.hasNext()</code> for strings and <code class="language-kotlin">scanner.hasNextInt()</code> for integers when you do not know the size of your input data. Note that you can stop input in the console in IDEA by pressing <strong>Ctrl+D</strong>. </p><h5 id="dowhile-loop">Do...while loop</h5><p>A <code class="language-kotlin">do...while</code> loop is executed first, after that the program tests a condition. If the condition is <code class="language-kotlin">true</code>, it repeats the loop until the condition becomes <code class="language-kotlin">false</code>. Since <code class="language-kotlin">do...while</code> loops check the condition after execution, the loop is also known as a <strong>post-test loop</strong>. In contrast with the <code class="language-kotlin">while</code> loop, which tests the condition before the execution, the <code class="language-kotlin">do..while</code> loop is an exit-condition loop. So, the body is always executed at least once.</p><p>This loop contains three parts: the <code class="language-kotlin">do</code> keyword, a body, and <code class="language-kotlin">while(condition)</code>:</p><pre><code class="language-kotlin">do {
+    // body: do something
+} while (condition)</code></pre><p>The program below reads an integer number from the standard input and displays the number. If a user enters <code class="language-kotlin">0</code>, the program prints it and then stops. The example below shows the work of the loop:</p><pre><code class="language-kotlin">fun main() {
+    do {
+        val n = readln().toInt()
+        println(n)
+    } while (n &gt; 0)
+}
+</code></pre><p></p><div class="alert alert-primary"><p>You can set a variable in the loop body and then use it in the condition.</p></div><p></p><p>Input:</p><pre><code class="language-no-highlight">1
+2
+4
+0</code></pre><p>Output:</p><pre><code class="language-no-highlight">1
+2
+4
+0</code></pre><p>The <code class="language-kotlin">do...while</code> loop can also be infinite just like the <code class="language-kotlin">while</code> loop.</p><h5 id="conclusion">Conclusion</h5><p>In this topic, we have covered two basic but very useful loops: <code class="language-kotlin">while</code> and <code class="language-kotlin">do...while</code>. They both have a body and a condition, the only difference being the order of their execution. A <code class="language-kotlin">while</code> loop checks a condition before the body execution, a <code class="language-kotlin">do...while</code> loop checks it after the first execution.</p><p>In practice, programmers do not use <code class="language-kotlin">do..while</code> as often as <code class="language-kotlin">while</code>. A good example of using this loop is a program that reads data from the standard input until a user enters a certain number or a string. Now you know the basics of these loops. Let's practice!</p></body></html>

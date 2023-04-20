@@ -1,0 +1,22 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: It will continue running until another overflow will occur and then crash
+- text: No, it will continue running without any error, but the result will not be
+    predictable
+- text: Immediately
+- text: It will print an error to stdout and then crash
+files:
+- name: src/Main.kt
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    fun main(args: Array<String>) {
+      // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/20148#comment
+status: Solved
+record: -1
+local_check: false
